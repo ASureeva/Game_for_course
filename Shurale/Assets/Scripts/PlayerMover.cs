@@ -19,7 +19,7 @@ public class PlayerMover : MonoBehaviour
 	public float jumpDistance = 1.2f; // расстояние от центра объекта, до поверхности
 
 	private Vector3 direction;
-	private float h, v;
+	public float h, v;
 	private int layerMask;
 	private Rigidbody body;
 	private float rotationY;
@@ -63,6 +63,7 @@ public class PlayerMover : MonoBehaviour
 	{
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
+		Debug.Log(h + "[j[j[j" + v);
 
 		// управление головой (камерой)
 		float rotationX = head.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
