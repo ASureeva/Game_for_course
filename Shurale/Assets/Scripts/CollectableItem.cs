@@ -42,6 +42,7 @@ public class CollectableItem : MonoBehaviour
                             hint.text = "";
                             controller_monster.timeLeft = 0f;
                             controller_monster.chaseState = true;
+                            controller_monster.MonsterChase.Stop();
                             mainCam.SetActive(false);
                             menuPauseCam.SetActive(true);
                             DayInterface.SetActive(true); 
@@ -67,6 +68,7 @@ public class CollectableItem : MonoBehaviour
                             hint.text = "";
                             controller_monster.timeLeft = 0f;
                             controller_monster.chaseState = true;
+                            controller_monster.MonsterChase.Stop();
                             mainCam.SetActive(false);
                             menuPauseCam.SetActive(true);
                             DayInterface.SetActive(true); 

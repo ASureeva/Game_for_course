@@ -44,6 +44,7 @@ public class UseItem : MonoBehaviour
                     Debug.Log("0000");   
                     controller_monster.timeLeft = 0f;
                     controller_monster.chaseState = true;
+                    controller_monster.MonsterChase.Stop();
                     hint.text = "";
                     text.text = "Новый день";
                     mainCam.SetActive(false);
@@ -67,6 +68,7 @@ public class UseItem : MonoBehaviour
                     hint.text = "";
                     controller_monster.timeLeft = 0f;
                     controller_monster.chaseState = true;
+                    controller_monster.MonsterChase.Stop();
                     text.text = "Новый день";
                     mainCam.SetActive(false);
                     menuPauseCam.SetActive(true);
@@ -84,8 +86,9 @@ public class UseItem : MonoBehaviour
                 }
                 else if (inventory.AddItems(item, amount) && (daycounter.now == 5)){
                     hint.text = "";
-                controller_monster.timeLeft = 0f;
-                controller_monster.chaseState = true;
+                    controller_monster.timeLeft = 0f;
+                    controller_monster.chaseState = true;
+                    controller_monster.MonsterChase.Stop();
                     text.text = "Новый день";
                     mainCam.SetActive(false);
                     menuPauseCam.SetActive(true);
