@@ -28,18 +28,28 @@ public class UseItem : MonoBehaviour
     public GameObject mainCam;
     public GameObject menuPauseCam;
     public Text hint;
+    public Text text;
+    public GameObject monster;
+    public ShuraleMover controller_monster;
 
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E) && near){
 
             if (inventory){
-                if (inventory.DeleteItems(item_id_seeds) && (daycounter.now == 2)){
-                    Debug.Log("0000");
+                if (daycounter.now == 1){
+                    hint.text = "Вы еще не посадили";
+                }
+                else if (inventory.DeleteItems(item_id_seeds) && (daycounter.now == 2)){
+                    Debug.Log("0000");   
+                    controller_monster.timeLeft = 0f;
+                    controller_monster.chaseState = true;
                     hint.text = "";
+                    text.text = "Новый день";
                     mainCam.SetActive(false);
                     menuPauseCam.SetActive(true);
                     DayInterface.SetActive(true); 
+                    monster.transform.position = new Vector3(80.97f, 2.1f, 116.84f);
                     player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
                     player.SetActive(false);
                     Time.timeScale = 0f;
@@ -55,9 +65,13 @@ public class UseItem : MonoBehaviour
                 } 
                 else if (inventory.DeleteItems(item_id_bucket) && (daycounter.now == 4)){
                     hint.text = "";
+                    controller_monster.timeLeft = 0f;
+                    controller_monster.chaseState = true;
+                    text.text = "Новый день";
                     mainCam.SetActive(false);
                     menuPauseCam.SetActive(true);
                     DayInterface.SetActive(true); 
+                    monster.transform.position = new Vector3(20.97f, 5.7f, -4.84f);
                     player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
                     player.SetActive(false);
                     Time.timeScale = 0f;
@@ -68,11 +82,15 @@ public class UseItem : MonoBehaviour
                         // Destroy(gameObject);
                     }
                 }
-                else if (inventory.AddItems(item, amount)){
+                else if (inventory.AddItems(item, amount) && (daycounter.now == 5)){
                     hint.text = "";
+                controller_monster.timeLeft = 0f;
+                controller_monster.chaseState = true;
+                    text.text = "Новый день";
                     mainCam.SetActive(false);
                     menuPauseCam.SetActive(true);
                     DayInterface.SetActive(true); 
+                    monster.transform.position = new Vector3(-167.97f, 2.1f, 146.84f);
                     player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
                     player.SetActive(false);
                     Time.timeScale = 0f;
@@ -80,7 +98,7 @@ public class UseItem : MonoBehaviour
 
                     if (daycounter){
                         daycounter.Next();
-                        Destroy(gameObject);
+                        // Destroy(gameObject);
                     }
                 }
                 else {

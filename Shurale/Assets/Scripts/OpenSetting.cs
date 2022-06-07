@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class OpenSetting : MonoBehaviour
 {
 
-    public GameObject _setting;
+    public GameObject _openUI;
     public GameObject _menu;
+    public GameObject _closeUI;
     public Button playButton;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class OpenSetting : MonoBehaviour
     void TaskOnClick()
     {
         _menu.SetActive(false);
-        _setting.SetActive(true);
+        _openUI.SetActive(true);
+        _closeUI.SetActive(false);
     }
 }

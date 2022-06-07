@@ -9,6 +9,7 @@ public class OpenMenu : MonoBehaviour
 
     public GameObject _setting;
     public GameObject _menu;
+    public GameObject _instruct;
     public Button playButton;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class OpenMenu : MonoBehaviour
     void TaskOnClick()
     {
         _menu.SetActive(true);
+        _instruct.SetActive(false);
         _setting.SetActive(false);
     }
 }

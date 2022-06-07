@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: tee
   m_EditorClassIdentifier: 
   id: 1
-  icon: {fileID: 21300000, guid: 1fb46228a3bcb5042a763829cc07f9e5, type: 3}
+  icon: {fileID: 21300000, guid: ebb8ea6ea69515148ae5542996591e58, type: 3}

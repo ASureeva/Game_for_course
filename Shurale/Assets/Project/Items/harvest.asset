@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: harvest
   m_EditorClassIdentifier: 
   id: 2
-  icon: {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
+  icon: {fileID: 21300000, guid: c3a5bea12f949834b9c1065ba423bf37, type: 3}

@@ -7,6 +7,9 @@ public class GamePause1 : MonoBehaviour
 
     public static bool GameIsPaused = false;
     public static bool MapIsOpen = false;
+    public GameObject instruct;
+    public GameObject settings;
+    public GameObject interfaceGame;
     public GameObject pauseMenuUI;
     public GameObject DayInterface;
     public GameObject mainCam;
@@ -43,11 +46,14 @@ public class GamePause1 : MonoBehaviour
 
     void Resume()
     {
+        Cursor.visible = false;
         mainCam.SetActive(true);
         menuPauseCam.SetActive(false);
         pauseMenuUI.SetActive(false);
         DayInterface.SetActive(false);
         bigMap.SetActive(false);
+        instruct.SetActive(false);
+        settings.SetActive(false);
         player.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -57,6 +63,7 @@ public class GamePause1 : MonoBehaviour
     void Pause()
     {
         mainCam.SetActive(false);
+        Cursor.visible = true;
         menuPauseCam.SetActive(true);
         pauseMenuUI.SetActive(true);
         DayInterface.SetActive(false);
@@ -68,11 +75,14 @@ public class GamePause1 : MonoBehaviour
 
     void OpenMap()
     {
+        Cursor.visible = true;
         mainCam.SetActive(false);
         menuPauseCam.SetActive(true);
         pauseMenuUI.SetActive(false);
         DayInterface.SetActive(false);
         bigMap.SetActive(true);
+        instruct.SetActive(false);
+        settings.SetActive(false);
         player.SetActive(false);
         Time.timeScale = 0f;
         MapIsOpen = true;
@@ -80,11 +90,14 @@ public class GamePause1 : MonoBehaviour
 
     void CloseMap()
     {
+        Cursor.visible = false;
         mainCam.SetActive(true);
         menuPauseCam.SetActive(false);
         pauseMenuUI.SetActive(false);
         bigMap.SetActive(false);
         DayInterface.SetActive(false);
+        instruct.SetActive(false);
+        settings.SetActive(false);
         player.SetActive(true);
         Time.timeScale = 1f;
         MapIsOpen = false;

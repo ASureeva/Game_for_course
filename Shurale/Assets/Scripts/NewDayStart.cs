@@ -23,6 +23,7 @@ public class NewDayStart : MonoBehaviour
 
 
     void TaskOnClick(){
+        Debug.Log("llllllllllllllllllllllllllllllllll");
         mainCam.SetActive(true);
         menuPauseCam.SetActive(false);
         DayInterface.SetActive(false);

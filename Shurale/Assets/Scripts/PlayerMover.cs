@@ -2,89 +2,120 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMover : MonoBehaviour
 {
-   
-	public float speed = 1.5f;
+    Vector2 pub_rotation = Vector2.zero;
+    [Range(0.5f, 10.0f)]
+    public float cameraSpeed = 2f;
+    [Range(0.5f, 100.0f)]
+    public float moveSpeed = 2f;
 
-	public Transform head;
+    private bool noLook = false;
+    private Rigidbody body;
+    void Start()
+    {
+        // Cursor.visible = false;//jjjj
+        body = GetComponent<Rigidbody>();
+        body.freezeRotation = true;
+    }
+    void Update()
+    {
+        //ForceCollide();
+        MouseLook();
+        EventKeys();
+    }
 
-	public float sensitivity = 5f; // чувствительность мыши
-	public float headMinY = -40f; // ограничение угла для головы
-	public float headMaxY = 40f;
+    void EventKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+            StartCoroutine(nameof(Forward));
 
-	public KeyCode jumpButton = KeyCode.Space; // клавиша для прыжка
-	public float jumpForce = 10; // сила прыжка
-	public float jumpDistance = 1.2f; // расстояние от центра объекта, до поверхности
+        if (Input.GetKeyDown(KeyCode.S))
+            StartCoroutine(nameof(Back));
 
-	private Vector3 direction;
-	public float h, v;
-	private int layerMask;
-	private Rigidbody body;
-	private float rotationY;
-	
-	void Start () 
-	{
-		body = GetComponent<Rigidbody>();
-		body.freezeRotation = true;
-		layerMask = 1 << gameObject.layer | 1 << 2;
-		layerMask = ~layerMask;
-	}
-	
-	void FixedUpdate()
-	{
-		body.AddForce(direction * speed, ForceMode.VelocityChange);
-		
-		// Ограничение скорости, иначе объект будет постоянно ускоряться
-		if(Mathf.Abs(body.velocity.x) > speed)
-		{
-			body.velocity = new Vector3(Mathf.Sign(body.velocity.x) * speed, body.velocity.y, body.velocity.z);
-		}
-		if(Mathf.Abs(body.velocity.z) > speed)
-		{
-			body.velocity = new Vector3(body.velocity.x, body.velocity.y, Mathf.Sign(body.velocity.z) * speed);
-		}
-	}
+        if (Input.GetKeyDown(KeyCode.A))
+            StartCoroutine(nameof(Left));
 
-	bool GetJump() // проверяем, есть ли коллайдер под ногами
-	{
-		RaycastHit hit;
-		Ray ray = new Ray(transform.position, Vector3.down);
-		if (Physics.Raycast(ray, out hit, jumpDistance, layerMask))
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        if (Input.GetKeyDown(KeyCode.D))
+            StartCoroutine(nameof(Right));
 
-	void Update () 
-	{
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
-		Debug.Log(h + "[j[j[j" + v);
+        if (Input.GetKeyDown(KeyCode.Space))
+            StartCoroutine(nameof(Space));
 
-		// управление головой (камерой)
-		float rotationX = head.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
-		rotationY += Input.GetAxis("Mouse Y") * sensitivity;
-		rotationY = Mathf.Clamp (rotationY, headMinY, headMaxY);
-		head.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            LShift();
 
-		// вектор направления движения
-		direction = new Vector3(h, 0, v);
-		direction = head.TransformDirection(direction);
-		direction = new Vector3(direction.x, 0, direction.z);
-		
-		if(Input.GetKeyDown(jumpButton) && GetJump())
-		{
-			body.velocity = new Vector2(0, jumpForce);
-		}
-	}
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            moveSpeed = 2.5f;
+    }
 
-	void OnDrawGizmosSelected() // подсветка, для визуальной настройки jumpDistance
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawRay(transform.position, Vector3.down * jumpDistance);
-	}
+    IEnumerator Forward()
+    {
+        for (; ; )
+        {
+            if (Input.GetKeyUp(KeyCode.W))
+                break;
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator Back()
+    {
+        for (; ; )
+        {
+            if (Input.GetKeyUp(KeyCode.S))
+                break;
+            transform.position -= transform.forward * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator Left()
+    {
+        for (; ; )
+        {
+            if (Input.GetKeyUp(KeyCode.A))
+                break;
+            Vector3 forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
+            Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
+            Vector3 left = Vector3.Cross(forward.normalized, up.normalized);
+            transform.position += left * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator Right()
+    {
+        for (; ; )
+        {
+            if (Input.GetKeyUp(KeyCode.D))
+                break;
+            Vector3 forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
+            Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
+            Vector3 right = Vector3.Cross(forward.normalized, up.normalized);
+            transform.position -= right * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator Space()
+    {
+        for (; ; )
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+                break;
+            transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed / 70), transform.position.z);
+            yield return null;
+        }
+    }
+
+    void LShift()
+    {
+        moveSpeed = 5f;
+    }
+
+    void MouseLook()
+    {
+        // Cursor.lockState = CursorLockMode.Locked;
+        pub_rotation.y += Input.GetAxis("Mouse X");
+        pub_rotation.x += Input.GetAxis("Mouse Y") - (Input.GetAxis("Mouse Y") * 2);
+        transform.eulerAngles = pub_rotation * cameraSpeed;
+    }
 }

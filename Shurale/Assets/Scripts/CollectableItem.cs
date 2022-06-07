@@ -14,7 +14,7 @@ public class CollectableItem : MonoBehaviour
     public Inventory inventory;
 
     public bool near;
-
+    public int number_of_item;
     public int invent_item = 0;
     public PlayerMover mover;
     public GameObject player;
@@ -25,33 +25,69 @@ public class CollectableItem : MonoBehaviour
     public GameObject mainCam;
     public GameObject menuPauseCam;
     public Text hint;
+    public GameObject monster;
+    public ShuraleMover controller_monster;
 
 
 
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E) && near){
-            Debug.Log("почему не работает???");
             if(!item) return;
 
             if (inventory){
-                Debug.Log("а тут??");
-                if (inventory.AddItems(item, amount)){
-                    hint.text = "";
-                    mainCam.SetActive(false);
-                    menuPauseCam.SetActive(true);
-                    DayInterface.SetActive(true); 
-                    player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
-                    player.SetActive(false);
-                    Time.timeScale = 0f;
-                    GameIsPaused = true;
+                if (number_of_item==0) {
+                    if (daycounter.now==1 ) {
+                         if (inventory.AddItems(item, amount)){
+                            hint.text = "";
+                            controller_monster.timeLeft = 0f;
+                            controller_monster.chaseState = true;
+                            mainCam.SetActive(false);
+                            menuPauseCam.SetActive(true);
+                            DayInterface.SetActive(true); 
+                            player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
+                            monster.transform.position = new Vector3(26.97f, 2.1f, -14.84f);
+                            player.SetActive(false);
+                            Time.timeScale = 0f;
+                            GameIsPaused = true;
 
-                    if (daycounter){
-                        daycounter.Next();
-                        Destroy(gameObject);
-                    }
+                            if (daycounter){
+                                daycounter.Next();
+                                Destroy(gameObject);
+                            }
 
                 }
+                    } else {
+                          hint.text = "Сегодня я не хочу этого делать";
+                    }
+                }
+                if (number_of_item==1) {
+                    if (daycounter.now==3){
+                         if (inventory.AddItems(item, amount)){
+                            hint.text = "";
+                            controller_monster.timeLeft = 0f;
+                            controller_monster.chaseState = true;
+                            mainCam.SetActive(false);
+                            menuPauseCam.SetActive(true);
+                            DayInterface.SetActive(true); 
+                            monster.transform.position = new Vector3(20.97f, 5.7f, -4.84f);
+                            player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
+                            player.SetActive(false);
+                            Time.timeScale = 0f;
+                            GameIsPaused = true;
+
+                            if (daycounter){
+                                daycounter.Next();
+                                Destroy(gameObject);
+                            }
+
+                }
+
+                    } else {
+                          hint.text = "Сегодня я не хочу этого делать";
+                    }
+                }
+               
             }
         }
     }

@@ -14,6 +14,7 @@ public class DayCounter : MonoBehaviour
     public void Next(){
         now += 1;
         PlayNextDay.Invoke();
+        PlayNextDay.Invoke();
         Debug.Log(now + "nownow");
     }
 
