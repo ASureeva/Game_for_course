@@ -36,7 +36,7 @@ public class brigdeUse : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        hint.text = "Нажмите Е";
+        hint.text = "";
         near = true;
     }
 

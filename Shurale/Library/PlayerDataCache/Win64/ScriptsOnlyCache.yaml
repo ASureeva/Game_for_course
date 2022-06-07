@@ -22,6 +22,7 @@ ScriptsOnlyBuild:
     - ShuraleMover
     - TextForGame
     - UseItem
+    - Win
     - brigdeUse
     - startGame
     Unity.Rider.Editor.dll:
@@ -68,6 +69,10 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -254,6 +259,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4230}
     - Class: 114
       Script: {instanceID: 20188}
+    - Class: 114
+      Script: {instanceID: 913926}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -283,6 +290,69 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 238
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
+    Assets/Scenes/SeventhDay.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1484}
+    - Class: 114
+      Script: {instanceID: 1830}
+    - Class: 114
+      Script: {instanceID: 1966}
+    - Class: 114
+      Script: {instanceID: 2252}
+    - Class: 114
+      Script: {instanceID: 2358}
+    - Class: 114
+      Script: {instanceID: 2504}
+    - Class: 114
+      Script: {instanceID: 2688}
+    - Class: 114
+      Script: {instanceID: 2766}
+    - Class: 114
+      Script: {instanceID: 3262}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     - Class: 241
       Script: {instanceID: 0}
@@ -575,7 +645,7 @@ ScriptsOnlyBuild:
     className: OpenMenu
   - hash:
       serializedVersion: 2
-      Hash: 808554dbd2c1724c1fe8f82ffae22652
+      Hash: 467acfc3054e522929df67ba760aff14
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerDeath
@@ -839,7 +909,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 651d951ca70886cf9ab04a1226a5d264
+      Hash: 36f8e224a2d7ce64883cd2001c7138d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: brigdeUse
@@ -915,9 +985,16 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InventoryDelUI
+  - hash:
+      serializedVersion: 2
+      Hash: c4774e6fc6964ce8cb8ae0aef7ce4201
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Win
   platform: 19
   scenePathNames:
   - Assets/Scenes/MenuScene.unity
   - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/SeventhDay.unity
   playerPath: "C:/Users/annas/OneDrive/\u0420\u0430\u0431\u043E\u0447\u0438\u0439
     \u0441\u0442\u043E\u043B/Shurale.exe"
