@@ -12,6 +12,9 @@ public class PlayerMover : MonoBehaviour
 
     private bool noLook = false;
     private Rigidbody body;
+
+    public float headMinY = -40f; // ограничение угла для головы
+    public float headMaxY = 40f;
     void Start()
     {
         // Cursor.visible = false;//jjjj
@@ -116,6 +119,7 @@ public class PlayerMover : MonoBehaviour
         // Cursor.lockState = CursorLockMode.Locked;
         pub_rotation.y += Input.GetAxis("Mouse X");
         pub_rotation.x += Input.GetAxis("Mouse Y") - (Input.GetAxis("Mouse Y") * 2);
+        pub_rotation.x = Mathf.Clamp (pub_rotation.x, headMinY, headMaxY);
         transform.eulerAngles = pub_rotation * cameraSpeed;
     }
 }
