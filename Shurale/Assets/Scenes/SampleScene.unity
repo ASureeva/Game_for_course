@@ -10993,7 +10993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hint: {fileID: 1204822646}
   near: 0
-  _sceneNumber: 3
+  _sceneNumber: 2
 --- !u!135 &336432258
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -48925,10 +48925,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1147429926}
   m_HandleRect: {fileID: 1896368284}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -70
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
