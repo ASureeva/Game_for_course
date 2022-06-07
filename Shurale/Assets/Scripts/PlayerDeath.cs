@@ -14,6 +14,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject mainCam;
     public GameObject menuPauseCam;
     public Text text;
+    public Text hint;
     public GameObject monster;
     public ShuraleMover controller_monster;
     public DayCounter daycounter;
@@ -24,7 +25,6 @@ public class PlayerDeath : MonoBehaviour
     {
         if (near) {
             day_text = daycounter.now;
-            Debug.Log(day_text);
             if (day_text==1) {
                 monster.transform.position = new Vector3(-95.91f, 2.1f, -121.84f);
             } else if (day_text==2) {
@@ -41,6 +41,7 @@ public class PlayerDeath : MonoBehaviour
                 monster.transform.position = new Vector3(20.97f, 5.7f, -4.84f);  
             }
             controller_monster.timeLeft = 0f;
+            hint.text = "";
             controller_monster.chaseState = true;
             controller_monster.MonsterChase.Stop();
             player.transform.position = new Vector3(15.42f, 3.87f, -10.65f);
@@ -48,7 +49,6 @@ public class PlayerDeath : MonoBehaviour
             mainCam.SetActive(false);
             menuPauseCam.SetActive(true);
             DayInterface.SetActive(true); 
-            Debug.Log("ojojojojojojojojojojojojjojo");
             player.SetActive(false);
             Time.timeScale = 0f;
             GameIsPaused = true;

@@ -15,6 +15,7 @@ public class brigdeUse : MonoBehaviour
     public Text hint;
     public GameObject WoodBridge;
     public DayCounter daycounter;
+    public Text text;
 
 
     void Update()
@@ -26,6 +27,7 @@ public class brigdeUse : MonoBehaviour
             else if ((daycounter.now==6) && (inventory.DeleteItems(item_id))){
                 WoodBridge.SetActive(true);
                 hint.text = "";
+                text.text = "А теперь попробуйте выжить";
             }
         }
     }
